@@ -6,11 +6,10 @@
 /*   By: jbennink <jbennink@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/14 13:45:24 by jbennink       #+#    #+#                */
-/*   Updated: 2019/11/19 16:59:12 by jbennink      ########   odam.nl         */
+/*   Updated: 2019/11/22 16:31:29 by jbennink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Libft/libft.h"
 #include "libftprintf.h"
 
 void	ft_setnewflags(int size, t_flags *flags)
@@ -20,6 +19,7 @@ void	ft_setnewflags(int size, t_flags *flags)
 	flags->filler = ' ';
 	flags->precision = -1;
 	flags->padside = PADLEFT;
+	flags->zerox = NO_0X;
 }
 
 void	ft_processflags(char **traverse, va_list args, t_flags *flags)
@@ -27,11 +27,11 @@ void	ft_processflags(char **traverse, va_list args, t_flags *flags)
 	int		i;
 
 	i = 0;
-	while (ft_strchr("0123456789-*.", (*traverse)[i]))
+	while (ft_strchr("0123456789-*.#", (*traverse)[i]) && (*traverse)[i])
 		i++;
 	ft_setnewflags(i, flags);
 	i = 0;
-	while (ft_strchr("0123456789-*.", **traverse))
+	while (ft_strchr("0123456789-*.#", **traverse) && **traverse)
 	{
 		flags->flagstr[i] = **traverse;
 		i++;
@@ -49,31 +49,15 @@ void	ft_fillflags(t_flags *flags, va_list args)
 	while (flags->flagstr[i])
 	{
 		if (flags->flagstr[i] == '-')
-		{
-			flags->filler = ' ';
-			flags->padside = PADRIGHT;
-			i++;
-		}
+			i += ft_flags_minus(flags);
 		if (flags->flagstr[i] == '*')
-		{
-			flags->minwidth = va_arg(args, int);
-			i++;
-		}
+			i += ft_flags_wildcard(flags, args);
 		if (flags->flagstr[i] == '.')
-		{
-			i++;
-			flags->precision = 0;
-			while (ft_isdigit(flags->flagstr[i]))
-			{
-				flags->precision = flags->precision * 10 + (flags->flagstr[i] - '0');
-				i++;
-			}
-		}
+			i = ft_flags_precision(flags, args, i);
+		if (flags->flagstr[i] == '#')
+			i += ft_flags_hashtag(flags);
 		if (flags->flagstr[i] == '0' && flags->padside != PADRIGHT)
-		{
-			flags->filler = '0';
-			i++;
-		}
+			i += ft_flags_zero(flags);
 		while (ft_isdigit(flags->flagstr[i]))
 		{
 			flags->minwidth = flags->minwidth * 10 + (flags->flagstr[i] - '0');
