@@ -6,7 +6,7 @@
 /*   By: jbennink <jbennink@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/06 11:24:42 by jbennink       #+#    #+#                */
-/*   Updated: 2019/11/22 16:40:54 by jbennink      ########   odam.nl         */
+/*   Updated: 2019/11/25 12:40:36 by jbennink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "printf_flags.h"
 # include "printf_functions_strings.h"
 # include "printf_functions_numbers.h"
-# include "../Libft/libft.h"
+# include "../libft/libft.h"
 
 int	ft_printf(const char *format, ...);
 int	ft_printarg(char **traverse, va_list args, int count);

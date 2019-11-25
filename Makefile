@@ -6,13 +6,13 @@
 #    By: jbennink <jbennink@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/06 10:19:54 by jbennink       #+#    #+#                 #
-#    Updated: 2019/11/22 16:39:18 by jbennink      ########   odam.nl          #
+#    Updated: 2019/11/25 12:40:36 by jbennink      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-LIBNAME = Libft.a
+LIBNAME = libft.a
 
 FLAGS = -Wall -Wextra -Werror
 
