@@ -6,7 +6,7 @@
 /*   By: jbennink <jbennink@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/22 12:25:16 by jbennink       #+#    #+#                */
-/*   Updated: 2019/11/22 16:41:54 by jbennink      ########   odam.nl         */
+/*   Updated: 2019/11/25 12:03:02 by jbennink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,19 @@ int	ft_flags_wildcard(t_flags *flags, va_list args)
 	return (i);
 }
 
-int	ft_flags_precision(t_flags *flags, va_list args, int i)
+int	ft_flags_prcsn(t_flags *flags, va_list args, int i)
 {
 	i++;
-	flags->precision = 0;
+	flags->prcsn = 0;
 	if (flags->flagstr[i] == '*')
 	{
-		flags->precision = va_arg(args, int);
+		flags->prcsn = va_arg(args, int);
 		i++;
 	}
 	else
 		while (ft_isdigit(flags->flagstr[i]))
 		{
-			flags->precision = flags->precision * 10 + flags->flagstr[i] - '0';
+			flags->prcsn = flags->prcsn * 10 + flags->flagstr[i] - '0';
 			i++;
 		}
 	return (i);

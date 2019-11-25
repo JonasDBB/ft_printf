@@ -6,7 +6,7 @@
 /*   By: jbennink <jbennink@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/22 14:27:54 by jbennink       #+#    #+#                */
-/*   Updated: 2019/11/22 16:31:37 by jbennink      ########   odam.nl         */
+/*   Updated: 2019/11/25 12:03:02 by jbennink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ int	ft_u_zeros_fill(t_flags *flags, int len, int n)
 	return (zeros);
 }
 
-int	ft_u_zeros_precision(t_flags *flags, int len)
+int	ft_u_zeros_prcsn(t_flags *flags, int len)
 {
 	int	zeros;
 
 	zeros = 0;
-	while (flags->precision > len)
+	while (flags->prcsn > len)
 	{
 		zeros++;
-		flags->precision--;
+		flags->prcsn--;
 	}
-	flags->precision = -1;
+	flags->prcsn = -1;
 	return (zeros);
 }
 
@@ -47,12 +47,12 @@ int	ft_u_get_zeros(t_flags *flags, int len, int n)
 	int	zeros;
 
 	zeros = 0;
-	if (flags->precision == -1 && flags->filler == '0')
+	if (flags->prcsn == -1 && flags->filler == '0')
 		zeros += ft_u_zeros_fill(flags, len, n);
-	if (flags->precision < len)
-		flags->precision = -1;
-	if (flags->precision > len)
-		zeros += ft_u_zeros_precision(flags, len);
+	if (flags->prcsn < len)
+		flags->prcsn = -1;
+	if (flags->prcsn > len)
+		zeros += ft_u_zeros_prcsn(flags, len);
 	if (flags->filler == '0')
 		flags->filler = ' ';
 	return (zeros);
@@ -67,7 +67,7 @@ int	ft_printunsg(va_list args, t_flags flags, int base, char capital)
 
 	count = 0;
 	n = va_arg(args, unsigned long);
-	if (flags.precision == 0)
+	if (flags.prcsn == 0)
 		res = ft_strdup("");
 	else
 	{
@@ -78,9 +78,10 @@ int	ft_printunsg(va_list args, t_flags flags, int base, char capital)
 	if ((flags.zerox == WITH_0X && n != 0) || flags.zerox == POINTER_0X)
 	{
 		res = (capital <= 'Z') ? ft_strjoin("0X", res) : ft_strjoin("0x", res);
-		if (flags.precision < (int)ft_strlen(res))
-			flags.precision = -1;
+		flags.prcsn = (flags.prcsn < (int)ft_strlen(res)) ? -1 : flags.prcsn;
 	}
+	if (!res)
+		return (-1);
 	count = (ft_printstr(flags, count, res));
 	free(res);
 	return (count);

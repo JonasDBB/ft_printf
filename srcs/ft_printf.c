@@ -6,7 +6,7 @@
 /*   By: jbennink <jbennink@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 15:40:05 by jbennink       #+#    #+#                */
-/*   Updated: 2019/11/22 16:24:33 by jbennink      ########   odam.nl         */
+/*   Updated: 2019/11/25 11:41:19 by jbennink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	ft_printarg(char **traverse, va_list args, int count)
 {
 	t_flags	flags;
 
-	ft_processflags(&(*traverse), args, &flags);
+	if (ft_processflags(&(*traverse), args, &flags) == -1)
+		return (-1);
 	if (!**traverse)
 		return (count);
 	if (**traverse == 'c')
@@ -58,6 +59,8 @@ int	ft_printf(const char *format, ...)
 			break ;
 		traverse++;
 		count = ft_printarg(&traverse, args, count);
+		if (count == -1)
+			break ;
 	}
 	va_end(args);
 	return (count);

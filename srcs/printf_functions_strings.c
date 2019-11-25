@@ -6,7 +6,7 @@
 /*   By: jbennink <jbennink@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/22 13:32:57 by jbennink       #+#    #+#                */
-/*   Updated: 2019/11/22 16:26:44 by jbennink      ########   odam.nl         */
+/*   Updated: 2019/11/25 12:03:02 by jbennink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ int	ft_printstr(t_flags flags, int count, char *str)
 	if (!str)
 		return (ft_emptystr(flags, count));
 	len = ft_strlen(str);
-	flags.precision = (flags.precision == -1) ? (len) : flags.precision;
-	if (len < flags.precision && flags.padside == PADLEFT)
-		flags.minwidth += flags.precision - len;
+	flags.prcsn = (flags.prcsn == -1) ? (len) : flags.prcsn;
+	if (len < flags.prcsn && flags.padside == PADLEFT)
+		flags.minwidth += flags.prcsn - len;
 	i = 0;
 	if (flags.padside == PADLEFT)
 		count = ft_padleft(&flags, count);
-	while (str[i] && i < flags.precision)
+	while (str[i] && i < flags.prcsn)
 	{
 		ft_putchar_fd(str[i], 1);
 		i++;
@@ -79,7 +79,7 @@ int	ft_padright(t_flags *flags, int count, int i)
 
 int	ft_padleft(t_flags *flags, int count)
 {
-	while (flags->minwidth > flags->precision)
+	while (flags->minwidth > flags->prcsn)
 	{
 		ft_putchar_fd(flags->filler, 1);
 		count++;

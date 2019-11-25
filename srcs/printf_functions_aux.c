@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   printf_functions.c                                 :+:    :+:            */
+/*   printf_functions_aux.c                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jbennink <jbennink@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/06 11:23:11 by jbennink       #+#    #+#                */
-/*   Updated: 2019/11/22 16:16:08 by jbennink      ########   odam.nl         */
+/*   Updated: 2019/11/25 11:45:01 by jbennink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,26 +42,28 @@ int		ft_abs(int i)
 char	*ft_getnbrstr(long long n, int zeros, char *nbr)
 {
 	char	*result;
-	char	*nulls;
+	char	*zerostring;
 	int		i;
 
-	nulls = malloc(zeros + 1);
+	zerostring = malloc(zeros + 1);
+	if (!zerostring || !nbr)
+		return (NULL);
 	i = 0;
 	if (n < 0)
 	{
-		nulls[0] = '-';
+		zerostring[0] = '-';
 		i++;
 		n = -n;
 	}
 	while (zeros)
 	{
-		nulls[i] = '0';
+		zerostring[i] = '0';
 		i++;
 		zeros--;
 	}
-	result = ft_strjoin(nulls, nbr);
+	result = ft_strjoin(zerostring, nbr);
 	free(nbr);
-	free(nulls);
+	free(zerostring);
 	return (result);
 }
 
