@@ -6,7 +6,7 @@
 #    By: jbennink <jbennink@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/06 10:19:54 by jbennink       #+#    #+#                 #
-#    Updated: 2019/11/25 12:40:36 by jbennink      ########   odam.nl          #
+#    Updated: 2019/11/25 16:07:02 by jbennink      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,6 @@ NAME = libftprintf.a
 LIBNAME = libft.a
 
 FLAGS = -Wall -Wextra -Werror
-
-SRCSPATH = srcs/
 
 INCLUDES = includes/
 
@@ -30,16 +28,18 @@ printf_functions_aux.c
 
 OBJS = $(SRCS:.c=.o)
 
+vpath %.c srcs
+
 .PHONY: all clean fclean re library
 
 all: library $(NAME)
 
-%.o: $(SRCSPATH)%.c
+%.o: %.c
 	gcc $(FLAGS) -I $(INCLUDES) -c $<
 
 $(NAME): $(OBJS)
 	cp libft/$(LIBNAME) $(NAME)
-	ar rcs $(NAME) $?
+	ar rcs $(NAME) $^
 
 clean:
 	rm -f $(OBJS)

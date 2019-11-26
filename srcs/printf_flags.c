@@ -6,7 +6,7 @@
 /*   By: jbennink <jbennink@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/14 13:45:24 by jbennink       #+#    #+#                */
-/*   Updated: 2019/11/25 12:03:02 by jbennink      ########   odam.nl         */
+/*   Updated: 2019/11/26 12:38:17 by jbennink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	ft_setnewflags(int size, t_flags *flags)
 	flags->minwidth = 0;
 	flags->filler = ' ';
 	flags->prcsn = -1;
-	flags->padside = PADLEFT;
-	flags->zerox = NO_0X;
+	flags->padside = padleft;
+	flags->zerox = no_0x;
 }
 
 int		ft_processflags(char **traverse, va_list args, t_flags *flags)
@@ -59,7 +59,7 @@ void	ft_fillflags(t_flags *flags, va_list args)
 			i = ft_flags_prcsn(flags, args, i);
 		if (flags->flagstr[i] == '#')
 			i += ft_flags_hashtag(flags);
-		if (flags->flagstr[i] == '0' && flags->padside != PADRIGHT)
+		if (flags->flagstr[i] == '0' && flags->padside != padright)
 			i += ft_flags_zero(flags);
 		while (ft_isdigit(flags->flagstr[i]))
 		{

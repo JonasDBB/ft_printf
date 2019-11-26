@@ -6,18 +6,18 @@
 /*   By: jbennink <jbennink@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/22 14:27:54 by jbennink       #+#    #+#                */
-/*   Updated: 2019/11/25 12:03:02 by jbennink      ########   odam.nl         */
+/*   Updated: 2019/11/26 12:38:54 by jbennink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_u_zeros_fill(t_flags *flags, int len, int n)
+int		ft_u_zeros_fill(t_flags *flags, int len, int n)
 {
 	int	zeros;
 
 	zeros = 0;
-	if ((flags->zerox == WITH_0X && n != 0) || flags->zerox == POINTER_0X)
+	if ((flags->zerox == with_0x && n != 0) || flags->zerox == pointer_0x)
 		flags->minwidth -= 2;
 	while (flags->minwidth > len)
 	{
@@ -28,7 +28,7 @@ int	ft_u_zeros_fill(t_flags *flags, int len, int n)
 	return (zeros);
 }
 
-int	ft_u_zeros_prcsn(t_flags *flags, int len)
+int		ft_u_zeros_prcsn(t_flags *flags, int len)
 {
 	int	zeros;
 
@@ -42,7 +42,7 @@ int	ft_u_zeros_prcsn(t_flags *flags, int len)
 	return (zeros);
 }
 
-int	ft_u_get_zeros(t_flags *flags, int len, int n)
+int		ft_u_get_zeros(t_flags *flags, int len, int n)
 {
 	int	zeros;
 
@@ -58,37 +58,60 @@ int	ft_u_get_zeros(t_flags *flags, int len, int n)
 	return (zeros);
 }
 
-int	ft_printunsg(va_list args, t_flags flags, int base, char capital)
+int		ft_printunsg(va_list args, t_flags flags, int base, char capital)
 {
 	unsigned long	n;
-	char			*res;
+	char			*rs;
 	int				zeros;
 	int				count;
 
 	count = 0;
 	n = va_arg(args, unsigned long);
 	if (flags.prcsn == 0)
-		res = ft_strdup("");
+		rs = ft_strdup("");
 	else
 	{
-		res = ft_itoabase(n, base, capital);
-		zeros = ft_u_get_zeros(&flags, ft_strlen(res), n);
-		res = ft_getnbrstr(n, zeros, res);
+		rs = ft_itoabase(n, base, capital);
+		zeros = ft_u_get_zeros(&flags, ft_strlen(rs), n);
+		rs = ft_getnbrstr(n, zeros, rs);
 	}
-	if ((flags.zerox == WITH_0X && n != 0) || flags.zerox == POINTER_0X)
+	if ((flags.zerox == with_0x && n != 0) || flags.zerox == pointer_0x)
 	{
-		res = (capital <= 'Z') ? ft_strjoin("0X", res) : ft_strjoin("0x", res);
-		flags.prcsn = (flags.prcsn < (int)ft_strlen(res)) ? -1 : flags.prcsn;
+		rs = (capital <= 'Z') ? ft_strjoin2("0X", &rs) : ft_strjoin2("0x", &rs);
+		flags.prcsn = (flags.prcsn < (int)ft_strlen(rs)) ? -1 : flags.prcsn;
 	}
-	if (!res)
+	if (!rs)
 		return (-1);
-	count = (ft_printstr(flags, count, res));
-	free(res);
+	count = (ft_printstr(flags, count, rs));
+	free(rs);
 	return (count);
 }
 
-int	ft_printptr(va_list args, t_flags flags, int count)
+char	*ft_strjoin2(char const *s1, char **s2)
 {
-	flags.zerox = POINTER_0X;
-	return (count + ft_printunsg(args, flags, 16, 'a'));
+	char	*result;
+	int		i;
+	int		j;
+
+	if (!s1 || !(*s2))
+		return (NULL);
+	result = malloc(ft_strlen(s1) + ft_strlen(*s2) + 1);
+	if (!result)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s1[i])
+	{
+		result[i] = s1[i];
+		i++;
+	}
+	while ((*s2)[j])
+	{
+		result[i] = (*s2)[j];
+		j++;
+		i++;
+	}
+	free(*s2);
+	result[i] = '\0';
+	return (result);
 }

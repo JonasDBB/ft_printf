@@ -6,7 +6,7 @@
 /*   By: jbennink <jbennink@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/22 14:15:58 by jbennink       #+#    #+#                */
-/*   Updated: 2019/11/25 12:03:02 by jbennink      ########   odam.nl         */
+/*   Updated: 2019/11/25 15:41:13 by jbennink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ int		ft_u_get_zeros(t_flags *flags, int len, int n);
 int		ft_u_zeros_prcsn(t_flags *flags, int len);
 int		ft_u_zeros_fill(t_flags *flags, int len, int n);
 int		ft_printptr(va_list args, t_flags flags, int count);
+
+char	*ft_strjoin2(char const *s1, char **s2);
 
 #endif

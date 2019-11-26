@@ -6,7 +6,7 @@
 /*   By: jbennink <jbennink@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/22 12:25:16 by jbennink       #+#    #+#                */
-/*   Updated: 2019/11/25 12:03:02 by jbennink      ########   odam.nl         */
+/*   Updated: 2019/11/26 12:38:36 by jbennink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_flags_minus(t_flags *flags)
 {
 	flags->filler = ' ';
-	flags->padside = PADRIGHT;
+	flags->padside = padright;
 	return (1);
 }
 
@@ -54,7 +54,7 @@ int	ft_flags_prcsn(t_flags *flags, va_list args, int i)
 
 int	ft_flags_hashtag(t_flags *flags)
 {
-	flags->zerox = WITH_0X;
+	flags->zerox = with_0x;
 	return (1);
 }
 

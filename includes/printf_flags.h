@@ -6,18 +6,22 @@
 /*   By: jbennink <jbennink@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/22 12:26:34 by jbennink       #+#    #+#                */
-/*   Updated: 2019/11/25 12:03:02 by jbennink      ########   odam.nl         */
+/*   Updated: 2019/11/26 12:39:05 by jbennink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFTPRINTF_FLAGS_H
 # define LIBFTPRINTF_FLAGS_H
 # include "libftprintf.h"
-# define PADLEFT 0
-# define PADRIGHT 1
-# define NO_0X 2
-# define WITH_0X 3
-# define POINTER_0X 4
+
+enum			e_state
+{
+	padleft,
+	padright,
+	no_0x,
+	with_0x,
+	pointer_0x
+};
 
 typedef struct	s_flagset
 {
