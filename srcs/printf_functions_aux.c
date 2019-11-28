@@ -6,7 +6,7 @@
 /*   By: jbennink <jbennink@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/06 11:23:11 by jbennink       #+#    #+#                */
-/*   Updated: 2019/11/25 11:45:01 by jbennink      ########   odam.nl         */
+/*   Updated: 2019/11/27 11:39:49 by jbennink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ char	*ft_getnbrstr(long long n, int zeros, char *nbr)
 		i++;
 		zeros--;
 	}
+	zerostring[i] = '\0';
 	result = ft_strjoin(zerostring, nbr);
 	free(nbr);
 	free(zerostring);

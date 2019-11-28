@@ -6,7 +6,7 @@
 /*   By: jbennink <jbennink@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/22 13:32:57 by jbennink       #+#    #+#                */
-/*   Updated: 2019/11/26 12:37:51 by jbennink      ########   odam.nl         */
+/*   Updated: 2019/11/26 18:08:59 by jbennink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_printstr(t_flags flags, int count, char *str)
 	if (!str)
 		return (ft_emptystr(flags, count));
 	len = ft_strlen(str);
-	flags.prcsn = (flags.prcsn == -1) ? (len) : flags.prcsn;
+	flags.prcsn = (flags.prcsn <= -1) ? (len) : flags.prcsn;
 	if (len < flags.prcsn && flags.padside == padleft)
 		flags.minwidth += flags.prcsn - len;
 	i = 0;

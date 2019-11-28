@@ -6,7 +6,7 @@
 /*   By: jbennink <jbennink@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/22 14:14:24 by jbennink       #+#    #+#                */
-/*   Updated: 2019/11/25 12:04:41 by jbennink      ########   odam.nl         */
+/*   Updated: 2019/11/27 11:50:37 by jbennink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	ft_printnbr(va_list args, t_flags flags, int count)
 	int		zeros;
 
 	n = va_arg(args, int);
-	if (flags.prcsn == 0)
+	if (flags.prcsn == 0 && n == 0)
 		return (ft_zero_prcsn(flags, count));
 	if (flags.prcsn == -1 && flags.filler == ' ')
 		return (ft_regular_fill(flags, count, n));
