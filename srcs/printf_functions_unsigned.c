@@ -6,7 +6,7 @@
 /*   By: jbennink <jbennink@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/22 14:27:54 by jbennink       #+#    #+#                */
-/*   Updated: 2019/11/27 11:59:56 by jbennink      ########   odam.nl         */
+/*   Updated: 2019/11/29 11:18:45 by jbennink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ int		ft_u_get_zeros(t_flags *flags, int len, int n)
 
 int		ft_printunsg(va_list args, t_flags flags, int base, char capital)
 {
-	unsigned int	n;
+	unsigned long	n;
 	char			*rs;
 	int				zeros;
 	int				count;
 
 	count = 0;
-	n = va_arg(args, unsigned int);
+	n = va_arg(args, unsigned long);
 	if (flags.prcsn == 0 && n == 0)
 		rs = ft_strdup("");
 	else

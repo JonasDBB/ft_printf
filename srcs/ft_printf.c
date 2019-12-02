@@ -6,7 +6,7 @@
 /*   By: jbennink <jbennink@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/04 15:40:05 by jbennink       #+#    #+#                */
-/*   Updated: 2019/11/26 12:38:54 by jbennink      ########   odam.nl         */
+/*   Updated: 2019/12/02 16:45:17 by jbennink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,4 @@ int	ft_printf(const char *format, ...)
 	}
 	va_end(args);
 	return (count);
-}
-
-int	ft_printptr(va_list args, t_flags flags, int count)
-{
-	flags.zerox = pointer_0x;
-	return (count + ft_printunsg(args, flags, 16, 'a'));
 }

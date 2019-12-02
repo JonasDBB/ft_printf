@@ -6,7 +6,7 @@
 #    By: jbennink <jbennink@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/06 10:19:54 by jbennink       #+#    #+#                 #
-#    Updated: 2019/11/25 16:07:02 by jbennink      ########   odam.nl          #
+#    Updated: 2019/12/02 16:45:46 by jbennink      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ printf_flags_filler.c \
 printf_functions_strings.c \
 printf_functions_signed.c \
 printf_functions_unsigned.c \
+printf_functions_ptr.c \
 printf_functions_aux.c
 
 OBJS = $(SRCS:.c=.o)
@@ -50,6 +51,8 @@ fclean:	clean
 	cd libft && $(MAKE) fclean
 
 re: fclean all
+
+bonus: all
 
 library:
 	cd libft && $(MAKE) all
