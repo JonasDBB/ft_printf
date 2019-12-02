@@ -6,13 +6,13 @@
 /*   By: jbennink <jbennink@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/12/02 16:44:45 by jbennink       #+#    #+#                */
-/*   Updated: 2019/12/02 16:45:27 by jbennink      ########   odam.nl         */
+/*   Updated: 2019/12/02 16:49:18 by jbennink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int		ft_printunsglong(va_list args, t_flags flags, int base, char capital)
+int	ft_printunsglong(va_list args, t_flags flags, int base, char capital)
 {
 	unsigned long	n;
 	char			*rs;
