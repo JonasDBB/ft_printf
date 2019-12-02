@@ -6,7 +6,7 @@
 #    By: jbennink <jbennink@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/11/06 10:19:54 by jbennink       #+#    #+#                 #
-#    Updated: 2019/12/02 16:50:55 by jbennink      ########   odam.nl          #
+#    Updated: 2019/12/02 16:51:29 by jbennink      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ fclean:	clean
 
 re: fclean all
 
-bonus: re
+bonus: all
 
 library:
 	cd libft && $(MAKE) all
