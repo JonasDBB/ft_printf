@@ -1,3 +1,7 @@
+Project to recreate (most of) the functionality of printf. See subject pdf for details on what is and isn't included.
+
+disclaimer:
+
 ft_printf project at Codam.
 
 Not intended for copying.
